@@ -1,26 +1,26 @@
-// Función constructora de consultorio
+// Función Constructura de Consultorio
 function Consultorio(nombreConsultorio, pacientes) {
     this.nombreConsultorio = nombreConsultorio
     this.pacientes = pacientes || []
 }
 
-////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
-// Metodo para agregar un nuevo paciente
+// Metodo para agregar un nuevo paciente 
 Consultorio.prototype.agregarPaciente = function (nuevoPaciente) {
     this.pacientes.push(nuevoPaciente.retrievePaciente())
 }
 
-///////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
-//Método para mostrar los pacientes como string
+// Metodo para mostrar los pacientes como string
 Consultorio.prototype.mostrarPacientes = function () {
     console.log(JSON.stringify(this.pacientes))
 }
 
-///////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
 
-// Función creadora de pacientes
+// Funcion Creadora de Pacientes
 function Paciente(nombre, edad, rut, diagnostico) {
     var _nombre = nombre
 
@@ -35,8 +35,9 @@ function Paciente(nombre, edad, rut, diagnostico) {
         }
     })
 
-    ////////////////////////////////////////////////
+    /////////////////////////////////////////////
     var _edad = edad
+
     Object.defineProperty(this, "_getEdad", {
         get: function () {
             return _edad
@@ -48,8 +49,7 @@ function Paciente(nombre, edad, rut, diagnostico) {
         }
     })
 
-    ///////////////////////////////////////////////
-
+    /////////////////////////////////////////////
     var _rut = rut
 
     Object.defineProperty(this, "_getRut", {
@@ -63,33 +63,39 @@ function Paciente(nombre, edad, rut, diagnostico) {
         }
     })
 
-    /////////////////////////////////////////////
+    ///////////////////////////////////////////
     var _diagnostico = diagnostico
 
     Object.defineProperty(this, "_getDiagnostico", {
+        get: function () {
+            return _diagnostico
+        }
+    })
+    Object.defineProperty(this, "_setDiagnostico", {
         set: function (diagnostico) {
-            _diagnostico = rut
+            _diagnostico = diagnostico
         }
     })
 }
 
-/////////////// SEETERS Y GETTERS ////////////
+///////////////////////SEETERS Y GETTERS ///////////////////////////
 
 Paciente.prototype.getNombre = function () {
     return this._getNombre
 }
 Paciente.prototype.setNombre = function (nombre) {
-    return this._setNombre = nombre
+    this._setNombre = nombre
 }
-//////////////////////////////////////////////
+
+//////////////////////////////////////////////////
 Paciente.prototype.getEdad = function () {
     return this._getEdad
 }
 Paciente.prototype.setEdad = function (edad) {
-    return this._setEdad = edad
+    this._setEdad = edad
 }
 
-/////////////////////////////////////////////
+//////////////////////////////////////////////////
 Paciente.prototype.getRut = function () {
     return this._getRut
 }
@@ -97,44 +103,44 @@ Paciente.prototype.setRut = function (rut) {
     this._setRut = rut
 }
 
-/////////////////////////////////////////////
+//////////////////////////////////////////////////
 Paciente.prototype.getDiagnostico = function () {
-    return thiis._getDiagnostico
+    return this._getDiagnostico
 }
 Paciente.prototype.setDiagnostico = function (diagnostico) {
     this._setDiagnostico = diagnostico
 }
 
-/////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 // Metodo para conseguir el nombre de los pacientes y así imprimirlos
 Paciente.prototype.retrievePaciente = function () {
     return [this.getNombre(), this.getEdad(), this.getRut(), this.getDiagnostico()]
 }
 
-/////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////
 
-// Lista de pacientes
-var p1 = new Paciente("Diego", 25, "19.299.542-6", "Resfrío Comun")
-var p2 = new Paciente("Karla", 22, "20.280.020-0", "Dislipidemía")
-var p3 = new Paciente("Patricio", 57, "11.973.322-1", "Gota")
-var p4 = new Paciente("Ester", 89, "6.483.244.6", "Resfrío")
+// LISTA DE PACIENTES
+var p1 = new Paciente("Diego", 24, "19.441.178-1", "Hérnias Discales")
+var p2 = new Paciente("Pedro", 55, "12.342.278-2", "Psoriasis")
+var p3 = new Paciente("Daniela", 15, "13.243.378-3", "Resfrío")
+var p4 = new Paciente("Valentina", 92, "14.144.478-4", "SARS-CoV-2")
 
 var c1 = new Consultorio("CESFAM Padre Orellana")
 
-// Aplicar Setters
+// APLICAR SETTERS
 
 p1.setNombre("José")
 // p2.setEdad("24")
 // p3.setRut("11.111.111-k")
 // p4.setDiagnostico("Influenza")
 
-// Agregar Pacientes a la Lista
+// AGREGAR PACIENTES A LA LISTA
+
 c1.agregarPaciente(p1)
 // c1.agregarPaciente(p2)
 // c1.agregarPaciente(p3)
 // c1.agregarPaciente(p4)
 
-console.log(c1.mostrarPacientes()) // Muestra los pacientes en el consultorio
-console.log(c1) // Muestra los pacientes en el consultorio
-
+console.log(c1.mostrarPacientes()) //muestra los pacientes en el consultorio
+console.log(c1) //muestra los pacientes en el consultorio
